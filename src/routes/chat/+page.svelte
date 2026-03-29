@@ -28,7 +28,8 @@
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-      const reader = res.body!.getReader();
+      if (!res.body) throw new Error('No response body');
+      const reader = res.body.getReader();
       const decoder = new TextDecoder();
       while (true) {
         const { done, value } = await reader.read();

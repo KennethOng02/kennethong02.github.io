@@ -4,13 +4,12 @@ import { error } from '@sveltejs/kit';
 import type { PageServerLoad, EntryGenerator } from './$types.js';
 
 const contentDir = join(process.cwd(), 'content');
+const allNotes = getAllNotes(contentDir);
 
-export const entries: EntryGenerator = () => {
-  return getAllNotes(contentDir).map(n => ({ slug: n.slug }));
-};
+export const entries: EntryGenerator = () => allNotes.map(n => ({ slug: n.slug }));
 
 export const load: PageServerLoad = ({ params }) => {
-  const note = getAllNotes(contentDir).find(n => n.slug === params.slug);
+  const note = allNotes.find(n => n.slug === params.slug);
   if (!note) throw error(404, 'Note not found');
   return { note };
 };

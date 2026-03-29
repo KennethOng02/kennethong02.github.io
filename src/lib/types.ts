@@ -7,13 +7,6 @@ export type Note = {
   tags: string[];
 };
 
-export type NoteChunk = {
-  noteSlug: string;
-  noteTitle: string;
-  chunkIndex: number;
-  content: string;
-};
-
 export type Message = {
   role: 'user' | 'assistant';
   content: string;

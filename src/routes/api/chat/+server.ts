@@ -12,7 +12,7 @@ const MAX_CHUNKS = 5;
 const MAX_HISTORY = 6;
 
 const CORS = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://kennethong02.github.io',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
 };

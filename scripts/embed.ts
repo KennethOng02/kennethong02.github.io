@@ -7,12 +7,6 @@ import { createClient } from '@supabase/supabase-js';
 import { encode, decode } from 'gpt-tokenizer';
 import { parseNote } from '../src/lib/notes.js';
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY!
-);
-
 const CONTENT_DIR = join(process.cwd(), 'content');
 const MAX_TOKENS = 500;
 const OVERLAP_TOKENS = 50;
@@ -35,6 +29,11 @@ export function chunkText(text: string, maxTokens: number, overlap: number): str
 }
 
 async function main() {
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+  const supabase = createClient(
+    process.env.SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_KEY!
+  );
   const files = readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md'));
   const rows: { note_slug: string; note_title: string; chunk_index: number; content: string }[] = [];
 

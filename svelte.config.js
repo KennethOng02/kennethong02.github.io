@@ -11,9 +11,9 @@ const config = {
       ? adapterVercel()
       : adapterStatic({ fallback: '404.html' }),
     prerender: {
-      handleHttpError: ({ path, referrer, message }) => {
-        // Ignore 404s for routes not yet implemented (e.g. /chat)
-        if (message.includes('404')) return;
+      handleHttpError: ({ path, message }) => {
+        // /chat is not yet implemented — ignore its 404 during prerender
+        if (path === '/chat') return;
         throw new Error(message);
       },
     },

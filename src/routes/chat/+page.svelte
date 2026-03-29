@@ -52,37 +52,45 @@
 
 <svelte:head><title>Chat — Ask the vault</title></svelte:head>
 
-<h1>Ask the vault</h1>
-<p>Ask anything about my notes.</p>
+<h1 class="text-3xl font-semibold text-ink mb-2">Ask the vault</h1>
+<p class="text-muted mb-6">Ask anything about my notes.</p>
 
-<div class="messages">
+<div class="flex flex-col gap-4 mb-6 min-h-8">
   {#each messages as msg}
-    <div class="message {msg.role}">
-      <span class="label">{msg.role === 'user' ? 'You' : 'Assistant'}</span>
-      <p>{msg.content || '…'}</p>
-    </div>
+    {#if msg.role === 'user'}
+      <div class="self-end max-w-[80%] bg-surface rounded-2xl rounded-br-sm px-4 py-3">
+        <p class="text-sm text-ink whitespace-pre-wrap m-0">{msg.content || '…'}</p>
+      </div>
+    {:else}
+      <div class="self-start max-w-[80%] px-1">
+        <p class="text-sm text-muted text-[10px] uppercase tracking-wider font-semibold mb-1">Assistant</p>
+        <p class="text-base text-ink leading-relaxed whitespace-pre-wrap m-0">{msg.content || '…'}</p>
+      </div>
+    {/if}
   {/each}
 </div>
 
-{#if errorMsg}<p class="error">{errorMsg}</p>{/if}
+{#if errorMsg}
+  <p class="text-red-500 text-sm mb-4">{errorMsg}</p>
+{/if}
 
-<form onsubmit={(e) => { e.preventDefault(); send(); }}>
-  <textarea bind:value={input} onkeydown={onKeydown}
-    placeholder="Ask something…" rows="3" disabled={loading}></textarea>
-  <button type="submit" disabled={loading || !input.trim()}>
+<form onsubmit={(e) => { e.preventDefault(); send(); }} class="flex flex-col gap-2">
+  <textarea
+    bind:value={input}
+    onkeydown={onKeydown}
+    placeholder="Ask something…"
+    rows="3"
+    disabled={loading}
+    class="w-full px-4 py-3 border border-border rounded-xl text-base text-ink bg-bg
+           placeholder:text-muted resize-none focus:outline-none focus:ring-2
+           focus:ring-accent/20 disabled:opacity-50 transition-colors"
+  ></textarea>
+  <button
+    type="submit"
+    disabled={loading || !input.trim()}
+    class="self-end px-5 py-2 bg-accent text-bg text-sm font-medium rounded-lg
+           disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-80 transition-opacity"
+  >
     {loading ? 'Sending…' : 'Send'}
   </button>
 </form>
-
-<style>
-  .messages { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; min-height: 2rem; }
-  .message { padding: 0.75rem 1rem; border-radius: 8px; background: #f9fafb; }
-  .message.user { background: #eff6ff; }
-  .label { font-size: 0.75rem; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.25rem; }
-  .message p { margin: 0; white-space: pre-wrap; }
-  .error { color: #dc2626; }
-  form { display: flex; flex-direction: column; gap: 0.5rem; }
-  textarea { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; resize: vertical; box-sizing: border-box; }
-  button { align-self: flex-end; padding: 0.5rem 1.25rem; background: #111827; color: white; border: none; border-radius: 6px; cursor: pointer; }
-  button:disabled { opacity: 0.5; cursor: not-allowed; }
-</style>

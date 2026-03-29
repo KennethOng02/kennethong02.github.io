@@ -1,0 +1,2 @@
+import{a as n,f as t}from"../chunks/ChvDkT1t.js";import"../chunks/oVKH-nOM.js";import{e as o,$ as r,n as i}from"../chunks/D7agr6Ki.js";import{h as s}from"../chunks/D1njVekr.js";var h=t(`<h1>Kenneth</h1> <p>Frontend engineer. Calisthenics athlete. This is my digital garden — a collection of
+  notes on things I'm learning and thinking about.</p> <p>You can <a href="/notes">browse my notes</a> or <a href="/chat">ask the vault</a> a question.</p>`,1);function g(e){var a=h();s("1uha8ag",m=>{o(()=>{r.title="Kenneth — Personal Site"})}),i(4),n(e,a)}export{g as component};

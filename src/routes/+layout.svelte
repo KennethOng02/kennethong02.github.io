@@ -32,11 +32,12 @@
         <a href="/notes" class="text-sm text-muted hover:text-ink transition-colors">Notes</a>
         <a href="/chat" class="text-sm text-muted hover:text-ink transition-colors">Chat</a>
         <button
+          type="button"
           onclick={toggleDark}
           aria-label="Toggle dark mode"
-          class="text-muted hover:text-ink transition-colors text-lg leading-none"
+          class="text-muted hover:text-ink transition-colors text-lg leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded"
         >
-          {isDark ? '☀' : '◑'}
+          <span aria-hidden="true">{isDark ? '☀' : '◑'}</span>
         </button>
       </div>
     </nav>

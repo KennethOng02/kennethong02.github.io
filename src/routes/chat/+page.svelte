@@ -63,7 +63,7 @@
       </div>
     {:else}
       <div class="self-start max-w-[80%] px-1">
-        <p class="text-sm text-muted text-[10px] uppercase tracking-wider font-semibold mb-1">Assistant</p>
+        <p class="text-[10px] text-muted uppercase tracking-wider font-semibold mb-1">Assistant</p>
         <p class="text-base text-ink leading-relaxed whitespace-pre-wrap m-0">{msg.content || '…'}</p>
       </div>
     {/if}
@@ -79,10 +79,11 @@
     bind:value={input}
     onkeydown={onKeydown}
     placeholder="Ask something…"
+    aria-label="Message"
     rows="3"
     disabled={loading}
     class="w-full px-4 py-3 border border-border rounded-xl text-base text-ink bg-bg
-           placeholder:text-muted resize-none focus:outline-none focus:ring-2
+           placeholder:text-muted resize-y focus:outline-none focus:ring-2
            focus:ring-accent/20 disabled:opacity-50 transition-colors"
   ></textarea>
   <button

@@ -8,6 +8,7 @@
   notes on things I'm learning and thinking about.
 </p>
 <p class="text-base leading-relaxed text-muted">
-  You can <a href="/notes" class="text-ink underline underline-offset-2 hover:text-muted transition-colors">browse my notes</a>
-  or <a href="/chat" class="text-ink underline underline-offset-2 hover:text-muted transition-colors">ask the vault</a> a question.
+  You can <a href="/notes" class="text-ink underline underline-offset-2 hover:text-muted transition-colors">browse my notes</a>,
+  <a href="/chat" class="text-ink underline underline-offset-2 hover:text-muted transition-colors">ask the vault</a> a question,
+  or <a href="/resume" class="text-ink underline underline-offset-2 hover:text-muted transition-colors">view my resume</a>.
 </p>

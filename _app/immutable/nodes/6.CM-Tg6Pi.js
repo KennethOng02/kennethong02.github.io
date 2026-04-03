@@ -1,0 +1,1 @@
+import{R as t}from"../chunks/D0iwhpLH.js";function o(e,r){throw new t(e,r.toString())}const n=!0;function i(){o(301,"/notes/resume")}const u=Object.freeze(Object.defineProperty({__proto__:null,load:i,prerender:n},Symbol.toStringTag,{value:"Module"}));export{u as universal};

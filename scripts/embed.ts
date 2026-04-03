@@ -46,6 +46,14 @@ async function main() {
     });
   }
 
+  // Delete chunks for notes no longer in content/
+  const activeSlugs = [...new Set(rows.map(r => r.note_slug))];
+  const deleteQuery = supabase.from('note_chunks').delete();
+  const { error: deleteError } = activeSlugs.length > 0
+    ? await deleteQuery.not('note_slug', 'in', `(${activeSlugs.join(',')})`)
+    : await deleteQuery.neq('note_slug', '');
+  if (deleteError) throw new Error(`Supabase delete failed: ${deleteError.message}`);
+
   if (rows.length === 0) { console.log('No published notes found.'); return; }
 
   const embeddings: number[][] = [];

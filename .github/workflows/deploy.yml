@@ -11,6 +11,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Checkout vault
+        uses: actions/checkout@v4
+        with:
+          repository: KennethOng02/obsidian-vault
+          path: vault
+          token: ${{ secrets.VAULT_TOKEN }}
+
+      - name: Copy published notes to content/
+        run: |
+          mkdir -p content
+          find vault -name "*.md" | while read f; do
+            if grep -qP "^publish:\s*true" "$f"; then
+              cp "$f" content/
+            fi
+          done
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'

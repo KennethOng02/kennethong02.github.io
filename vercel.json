@@ -1,3 +1,5 @@
 {
-  "framework": "sveltekit"
+  "framework": "sveltekit",
+  "buildCommand": "npm install && vite build",
+  "installCommand": "npm install"
 }

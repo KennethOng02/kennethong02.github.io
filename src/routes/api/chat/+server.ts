@@ -7,7 +7,7 @@ import { OPENAI_API_KEY, SUPABASE_URL, SUPABASE_SERVICE_KEY } from '$env/static/
 import type { RequestHandler } from './$types.js';
 import type { Message } from '$lib/types.js';
 
-const SIMILARITY_THRESHOLD = 0.7;
+const SIMILARITY_THRESHOLD = 0.3;
 const MAX_CHUNKS = 5;
 const MAX_HISTORY = 6;
 

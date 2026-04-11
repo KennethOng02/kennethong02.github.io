@@ -52,18 +52,18 @@
 
 <svelte:head><title>Chat — Ask the vault</title></svelte:head>
 
-<h1 class="text-3xl font-semibold text-ink mb-2">Ask the vault</h1>
+<h1 class="font-serif text-3xl font-bold tracking-tight text-ink mb-2">Ask the vault</h1>
 <p class="text-muted mb-6">Ask anything about my notes.</p>
 
 <div class="flex flex-col gap-4 mb-6 min-h-8">
   {#each messages as msg}
     {#if msg.role === 'user'}
-      <div class="self-end max-w-[80%] bg-surface rounded-2xl rounded-br-sm px-4 py-3">
+      <div class="self-end max-w-[80%] bg-surface border border-border rounded-2xl rounded-br-sm px-4 py-3">
         <p class="text-sm text-ink whitespace-pre-wrap m-0">{msg.content || '…'}</p>
       </div>
     {:else}
       <div class="self-start max-w-[80%] px-1">
-        <p class="text-[10px] text-muted uppercase tracking-wider font-semibold mb-1">Assistant</p>
+        <p class="text-[10px] text-accent uppercase tracking-wider font-semibold mb-1">Assistant</p>
         <p class="text-base text-ink leading-relaxed whitespace-pre-wrap m-0">{msg.content || '…'}</p>
       </div>
     {/if}

@@ -2,6 +2,7 @@
   import '../app.css';
   import type { Snippet } from 'svelte';
   import { onMount } from 'svelte';
+  import { page } from '$app/stores';
 
   let { children }: { children: Snippet } = $props();
   let isDark = $state(false);
@@ -29,21 +30,44 @@
         Kenneth
       </a>
       <div class="flex items-center gap-6">
-        <a href="/notes" class="text-sm text-muted hover:text-ink transition-colors">Notes</a>
-        <a href="/chat" class="text-sm text-muted hover:text-ink transition-colors">Chat</a>
+        <a
+          href="/notes"
+          class="text-sm transition-colors {$page.url.pathname.startsWith('/notes')
+            ? 'nav-active text-ink'
+            : 'text-muted hover:text-ink'}"
+        >Notes</a>
+        <a
+          href="/chat"
+          class="text-sm transition-colors {$page.url.pathname.startsWith('/chat')
+            ? 'nav-active text-ink'
+            : 'text-muted hover:text-ink'}"
+        >Chat</a>
         <button
           type="button"
           onclick={toggleDark}
-          aria-label="Toggle dark mode"
-          class="text-muted hover:text-ink transition-colors text-lg leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded"
+          aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          class="text-muted hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded p-1 -mr-1"
         >
-          <span aria-hidden="true">{isDark ? '☀' : '◑'}</span>
+          {#if isDark}
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="1.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </svg>
+          {:else}
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="1.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          {/if}
         </button>
       </div>
     </nav>
   </header>
 
-  <main class="flex-1 max-w-2xl mx-auto w-full px-6 md:px-8 py-10">
+  <main class="animate-fade-in-up flex-1 max-w-2xl mx-auto w-full px-6 md:px-8 py-10">
     {@render children()}
   </main>
 
